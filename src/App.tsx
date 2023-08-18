@@ -70,14 +70,15 @@ export default function App() {
   function updateState() {
     const dataFromLocalStorage = localStorage.getItem("to-do") as string;
     const selectedDataFromLocalStorage = localStorage.getItem("to-do-selected") as string;
+    console.log(dataFromLocalStorage)
+    if (dataFromLocalStorage != null) {
+      const dataFromLocalStorageArray = stringToArray(dataFromLocalStorage);
+      const selectedDataFromLocalStorageArray = stringToArray(selectedDataFromLocalStorage);
 
-    const dataFromLocalStorageArray = stringToArray(dataFromLocalStorage);
-    const selectedDataFromLocalStorageArray = stringToArray(selectedDataFromLocalStorage);
+      setToDoData(dataFromLocalStorageArray);
+      setSelectedToDoData(selectedDataFromLocalStorageArray)
 
-    setToDoData(dataFromLocalStorageArray);
-    setSelectedToDoData(selectedDataFromLocalStorageArray)
-
-
+    }
 
 
 
