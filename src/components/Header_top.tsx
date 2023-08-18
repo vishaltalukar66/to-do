@@ -4,7 +4,7 @@ import clock from '../assets/alarm-clock-deadline-svgrepo-com.svg';
 import calender from '../assets/calendar-general-month-2-svgrepo-com.svg';
 export const Header_top: React.FC = () => {
     const [today, setToday] = useState(new Date());
-    console.log(today.getTime());
+
 
     useEffect(() => {
 
