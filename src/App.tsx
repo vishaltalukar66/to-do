@@ -21,10 +21,20 @@ export default function App() {
 
     const newArray0 = dataFromLocalStorageArray0.filter(item => item !== dataToChange0);
     const newArray1 = dataFromLocalStorageArray1.filter(item => item !== dataToChange0);
-
-    localStorage.setItem("to-do", newArray0.toString());
-    localStorage.setItem("to-do-selected", newArray1.toString());
-    updateState();
+    console.log('new array ', newArray0)
+    if (newArray0.length === 0) {
+      //last element
+      console.log('inside the del ')
+      localStorage.removeItem('to-do');
+      localStorage.removeItem('to-do-selected');
+      updateState();
+      location.reload();
+    }
+    else {
+      localStorage.setItem("to-do", newArray0.toString());
+      localStorage.setItem("to-do-selected", newArray1.toString());
+      updateState();
+    }
   }
   function changeTaskEvent(index: number) {
     if (!selectedToDoData.includes(toDoData[index])) {
@@ -70,13 +80,16 @@ export default function App() {
   function updateState() {
     const dataFromLocalStorage = localStorage.getItem("to-do") as string;
     const selectedDataFromLocalStorage = localStorage.getItem("to-do-selected") as string;
+    console.log(dataFromLocalStorage)
+    if (dataFromLocalStorage != null) {
+      const dataFromLocalStorageArray = stringToArray(dataFromLocalStorage);
+      console.log(dataFromLocalStorageArray.length);
+      const selectedDataFromLocalStorageArray = stringToArray(selectedDataFromLocalStorage);
 
-    const dataFromLocalStorageArray = stringToArray(dataFromLocalStorage);
-    const selectedDataFromLocalStorageArray = stringToArray(selectedDataFromLocalStorage);
+      setToDoData(dataFromLocalStorageArray);
+      setSelectedToDoData(selectedDataFromLocalStorageArray)
 
-    setToDoData(dataFromLocalStorageArray);
-    setSelectedToDoData(selectedDataFromLocalStorageArray)
-
+    }
 
 
 
